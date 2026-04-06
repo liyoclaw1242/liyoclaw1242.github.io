@@ -48,13 +48,21 @@
 
     :root {
       --bg-deep: #0a0e1a;
+      --bg-surface: #0f1424;
       --bg-card: rgba(15, 20, 40, 0.6);
+      --bg-card-elevated: rgba(20, 26, 50, 0.7);
       --accent-blue: #5b8dee;
       --accent-purple: #9b7edb;
       --accent-silver: #c4c9d8;
+      --accent-green: #4ade80;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f472b6;
+      --accent-cyan: #22d3ee;
+      --accent-orange: #fb923c;
       --text-primary: #e8eaf0;
       --text-secondary: #8b92a8;
       --glass-border: rgba(91, 141, 238, 0.15);
+      --glass-border-hover: rgba(91, 141, 238, 0.3);
       --glow: rgba(91, 141, 238, 0.08);
     }
 
@@ -99,95 +107,164 @@
       100% { opacity: 0; transform: translateY(-10vh) scale(1); }
     }
 
-    .container { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+    .container { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
 
     /* Lang switcher */
     .lang-switcher {
-      position: fixed; top: 16px; right: 16px; z-index: 10;
+      position: fixed; top: 20px; right: 20px; z-index: 10;
       display: flex; gap: 2px;
-      background: var(--bg-card); border: 1px solid var(--glass-border);
-      border-radius: 8px; padding: 3px; backdrop-filter: blur(10px);
+      background: rgba(15, 20, 40, 0.8); border: 1px solid var(--glass-border);
+      border-radius: 10px; padding: 4px; backdrop-filter: blur(16px);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
     }
     .lang-btn {
-      padding: 4px 10px; border: none; border-radius: 6px;
+      padding: 5px 12px; border: none; border-radius: 7px;
       font-size: 0.75rem; font-family: inherit; font-weight: 500;
       cursor: pointer; background: transparent; color: var(--text-secondary);
       transition: all 0.2s;
     }
-    .lang-btn:hover { color: var(--text-primary); }
+    .lang-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.05); }
+    .lang-btn:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 1px; }
     .lang-btn.active { background: var(--accent-blue); color: #fff; }
+    .lang-btn[data-switch="ai"].active { background: #16a34a; font-family: 'JetBrains Mono', monospace; }
 
     /* Hero */
-    .hero { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 4rem; padding-top: 2rem; }
-    .avatar-wrapper { position: relative; margin-bottom: 2rem; }
+    .hero { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 4.5rem; padding-top: 2.5rem; }
+    .avatar-wrapper { position: relative; margin-bottom: 1.75rem; }
     .avatar-glow {
       position: absolute; inset: -8px; border-radius: 50%;
       background: conic-gradient(from 0deg, var(--accent-blue), var(--accent-purple), var(--accent-blue));
       opacity: 0.4; filter: blur(12px); animation: rotate-glow 8s linear infinite;
     }
     @keyframes rotate-glow { 100% { transform: rotate(360deg); } }
-    .avatar { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 2px solid var(--glass-border); position: relative; z-index: 1; transition: transform 0.4s ease; }
+    .avatar { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 2px solid var(--glass-border); position: relative; z-index: 1; transition: transform 0.4s ease; }
     .avatar:hover { transform: scale(1.05); }
-    .hero h1 { font-size: 2.2rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.25rem; background: linear-gradient(135deg, var(--text-primary), var(--accent-silver)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero h1 { font-size: 2.4rem; font-weight: 600; letter-spacing: -0.025em; margin-bottom: 0.2rem; background: linear-gradient(135deg, var(--text-primary), var(--accent-silver)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .hero h1 .lotus { -webkit-text-fill-color: initial; font-size: 1.6rem; vertical-align: middle; }
-    .hero .romanization { font-size: 0.95rem; color: var(--text-secondary); font-weight: 300; letter-spacing: 0.15em; margin-bottom: 1rem; }
-    .hero .bio { font-size: 1.05rem; color: var(--accent-silver); font-weight: 300; max-width: 420px; line-height: 1.8; }
+    .hero .romanization { font-size: 0.9rem; color: var(--text-secondary); font-weight: 300; letter-spacing: 0.18em; margin-bottom: 1.25rem; }
+    .hero .bio { font-size: 1rem; color: var(--accent-silver); font-weight: 300; max-width: 400px; line-height: 1.8; }
     .hero .bio em { font-style: normal; color: var(--accent-purple); }
-    .social-links { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+    .social-links { display: flex; gap: 0.75rem; margin-top: 1.75rem; }
     .social-link {
       display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem;
       border: 1px solid var(--glass-border); border-radius: 999px; color: var(--text-secondary);
       text-decoration: none; font-size: 0.85rem; font-weight: 400;
-      background: var(--bg-card); backdrop-filter: blur(10px); transition: all 0.3s ease;
+      background: var(--bg-card); backdrop-filter: blur(10px); transition: all 0.25s ease;
     }
     .social-link:hover { color: var(--text-primary); border-color: var(--accent-blue); box-shadow: 0 0 20px var(--glow); transform: translateY(-1px); }
+    .social-link:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
     .social-link svg { width: 16px; height: 16px; fill: currentColor; }
 
     /* Sections */
-    .section { margin-bottom: 3rem; }
-    .section-title { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent-blue); margin-bottom: 1.25rem; padding-left: 1rem; border-left: 2px solid var(--accent-blue); }
-    .card { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.75rem; backdrop-filter: blur(20px); transition: border-color 0.3s ease; }
-    .card:hover { border-color: rgba(91, 141, 238, 0.3); }
+    .section { margin-bottom: 3.5rem; }
+    .section + .section { margin-top: 0; }
+    .section-title {
+      font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em;
+      color: var(--accent-blue); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-title::before { content: ''; display: block; width: 2px; height: 14px; background: var(--accent-blue); border-radius: 1px; flex-shrink: 0; }
+
+    .card {
+      background: var(--bg-card); border-radius: 16px; padding: 1.75rem;
+      backdrop-filter: blur(20px); transition: border-color 0.25s ease;
+      box-shadow: 0 0 0 1px var(--glass-border), 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card:hover { box-shadow: 0 0 0 1px var(--glass-border-hover), 0 4px 16px rgba(0, 0, 0, 0.15); }
     .card p { color: var(--accent-silver); font-weight: 300; font-size: 0.95rem; line-height: 1.9; }
     .card p + p { margin-top: 1rem; }
     .card .highlight { color: var(--accent-purple); font-weight: 400; }
 
-    /* Agent Team Architecture */
-    .arch-diagram {
-      background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 16px;
-      padding: 1.75rem; backdrop-filter: blur(20px); margin-bottom: 1.5rem; text-align: center;
+    /* Architecture diagram — visual hub-and-spoke */
+    .arch-visual {
+      background: var(--bg-card); border-radius: 16px;
+      padding: 2.5rem 1.75rem; backdrop-filter: blur(20px); margin-bottom: 2rem;
+      box-shadow: 0 0 0 1px var(--glass-border);
+      display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
     }
-    .arch-diagram pre {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent-silver);
-      line-height: 1.6; text-align: left; display: inline-block;
+    .arch-hub-node {
+      background: rgba(91, 141, 238, 0.12);
+      box-shadow: 0 0 0 1px rgba(91, 141, 238, 0.3), 0 0 24px rgba(91, 141, 238, 0.1);
+      border-radius: 12px; padding: 0.75rem 1.5rem;
+      text-align: center;
     }
-    .arch-hub { color: var(--accent-blue); font-weight: 600; }
-    .arch-spoke { color: var(--accent-purple); }
+    .arch-hub-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-blue); }
+    .arch-hub-title { font-size: 0.85rem; font-weight: 500; color: var(--text-primary); margin-top: 0.15rem; }
+    .arch-connector {
+      display: flex; flex-direction: column; align-items: center; gap: 0.25rem; color: var(--text-secondary);
+    }
+    .arch-connector-line { width: 1px; height: 12px; background: linear-gradient(to bottom, var(--accent-blue), var(--accent-purple)); opacity: 0.5; }
+    .arch-connector-arrows { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--text-secondary); opacity: 0.6; }
+    .arch-spokes {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; width: 100%;
+    }
+    .arch-spoke-group {
+      text-align: center; padding: 0.6rem 0.5rem;
+      border-radius: 8px; background: rgba(255, 255, 255, 0.02);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+    .arch-spoke-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.2rem; }
+    .arch-spoke-label.impl { color: var(--accent-green); }
+    .arch-spoke-label.review { color: var(--accent-amber); }
+    .arch-spoke-names { font-size: 0.75rem; color: var(--text-secondary); font-weight: 400; line-height: 1.5; }
 
-    /* Agent roles grid */
-    .roles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    /* Roles section */
+    .roles-section { display: flex; flex-direction: column; gap: 1rem; }
+
+    .role-card-featured {
+      background: var(--bg-card-elevated); border-radius: 14px;
+      padding: 1.5rem 1.75rem; backdrop-filter: blur(20px); cursor: default;
+      box-shadow: 0 0 0 1px rgba(91, 141, 238, 0.2), 0 4px 20px rgba(0, 0, 0, 0.15);
+      display: flex; align-items: flex-start; gap: 1.25rem;
+      transition: box-shadow 0.25s ease;
+    }
+    .role-card-featured:hover { box-shadow: 0 0 0 1px rgba(91, 141, 238, 0.35), 0 8px 32px rgba(0, 0, 0, 0.2); }
+    .role-card-featured .role-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .role-card-featured .role-badge { display: inline-block; font-size: 0.6rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .role-card-featured .role-name { font-size: 1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.3rem; }
+    .role-card-featured .role-desc { font-size: 0.85rem; color: var(--text-secondary); font-weight: 300; line-height: 1.6; }
+
+    .roles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
     .role-card {
-      background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 12px;
-      padding: 1.25rem; backdrop-filter: blur(20px); transition: all 0.3s ease; cursor: default;
+      background: var(--bg-card); border-radius: 12px;
+      padding: 1.15rem 1.25rem; backdrop-filter: blur(20px); cursor: default;
+      box-shadow: 0 0 0 1px var(--glass-border);
+      transition: all 0.25s ease;
     }
-    .role-card:hover { border-color: rgba(155, 126, 219, 0.35); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
-    .role-badge { display: inline-block; font-size: 0.65rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
-    .role-badge-arch { background: rgba(91,141,238,0.15); color: var(--accent-blue); }
-    .role-badge-impl { background: rgba(74,222,128,0.12); color: #4ade80; }
-    .role-badge-review { background: rgba(250,204,21,0.12); color: #facc15; }
-    .role-name { font-size: 0.9rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.3rem; }
-    .role-desc { font-size: 0.78rem; color: var(--text-secondary); font-weight: 300; line-height: 1.5; }
+    .role-card:hover { box-shadow: 0 0 0 1px var(--glass-border-hover); transform: translateY(-2px); }
+    .role-badge { display: inline-block; font-size: 0.6rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-bottom: 0.4rem; letter-spacing: 0.06em; }
 
-    /* Skills grid */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
-    .skill-card {
-      background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 12px;
-      padding: 1.25rem; backdrop-filter: blur(20px); transition: all 0.3s ease; cursor: default;
+    /* Per-role badge colors */
+    .role-badge-arch { background: rgba(91, 141, 238, 0.15); color: var(--accent-blue); }
+    .role-badge-fe { background: rgba(34, 211, 238, 0.12); color: var(--accent-cyan); }
+    .role-badge-be { background: rgba(74, 222, 128, 0.12); color: var(--accent-green); }
+    .role-badge-ops { background: rgba(251, 146, 60, 0.12); color: var(--accent-orange); }
+    .role-badge-qa { background: rgba(245, 158, 11, 0.12); color: var(--accent-amber); }
+    .role-badge-design { background: rgba(244, 114, 182, 0.12); color: var(--accent-rose); }
+    .role-badge-debug { background: rgba(155, 126, 219, 0.12); color: var(--accent-purple); }
+
+    .role-name { font-size: 0.88rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.25rem; }
+    .role-desc { font-size: 0.78rem; color: var(--text-secondary); font-weight: 300; line-height: 1.55; }
+
+    /* Group labels for role sections */
+    .roles-group-label {
+      font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--text-secondary); margin-top: 0.75rem; margin-bottom: 0.5rem; opacity: 0.7;
     }
-    .skill-card:hover { border-color: rgba(155, 126, 219, 0.35); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
-    .skill-icon { font-size: 1.4rem; margin-bottom: 0.6rem; }
-    .skill-name { font-size: 0.9rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.3rem; }
-    .skill-desc { font-size: 0.78rem; color: var(--text-secondary); font-weight: 300; line-height: 1.5; }
+
+    /* Feature cards — 2-column with icons */
+    .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .feature-card {
+      background: var(--bg-card); border-radius: 12px;
+      padding: 1.25rem; backdrop-filter: blur(20px); cursor: default;
+      box-shadow: 0 0 0 1px var(--glass-border);
+      transition: all 0.25s ease;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .feature-card:hover { box-shadow: 0 0 0 1px var(--glass-border-hover); transform: translateY(-1px); }
+    .feature-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .feature-name { font-size: 0.88rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.2rem; }
+    .feature-desc { font-size: 0.78rem; color: var(--text-secondary); font-weight: 300; line-height: 1.55; }
 
     /* AI view */
     .ai-view { display: none; }
@@ -197,28 +274,52 @@
       padding: 1.5rem; line-height: 1.6; overflow-x: auto; white-space: pre;
     }
 
+    /* AI mode theme override */
+    .ai-mode body { background: #050808; }
+    .ai-mode .container { font-family: 'JetBrains Mono', monospace; }
+    .ai-mode .section-title { color: #16a34a; }
+    .ai-mode .section-title::before { background: #16a34a; }
+
     /* Language visibility */
     [data-lang] { display: none; }
     [data-lang].active { display: block; }
     .hero [data-lang].active { display: flex; flex-direction: column; align-items: center; }
 
     /* Footer */
-    .footer { text-align: center; padding-top: 2rem; border-top: 1px solid var(--glass-border); color: var(--text-secondary); font-size: 0.8rem; font-weight: 300; }
+    .footer {
+      text-align: center; padding-top: 3rem; margin-top: 1rem;
+      border-top: 1px solid rgba(91, 141, 238, 0.08);
+      color: var(--text-secondary); font-size: 0.8rem; font-weight: 300;
+    }
     .footer a { color: var(--accent-blue); text-decoration: none; }
     .footer a:hover { text-decoration: underline; }
-    .footer .powered { margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.6; }
+    .footer .powered { margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.5; }
 
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    /* Tablet */
+    @media (max-width: 768px) {
+      .container { max-width: 600px; padding: 2.5rem 1.25rem 3rem; }
+      .roles-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .arch-spokes { grid-template-columns: repeat(3, 1fr); }
+      .role-card-featured { flex-direction: column; gap: 0.75rem; }
+    }
+
+    /* Mobile */
     @media (max-width: 480px) {
       .container { padding: 2rem 1rem 3rem; }
-      .hero h1 { font-size: 1.8rem; }
+      .hero { margin-bottom: 3.5rem; padding-top: 2rem; }
+      .hero h1 { font-size: 1.9rem; }
       .avatar { width: 110px; height: 110px; }
       .social-links { flex-wrap: wrap; justify-content: center; }
-      .roles-grid, .skills-grid { grid-template-columns: 1fr; }
+      .roles-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .feature-card { flex-direction: column; gap: 0.5rem; }
+      .arch-spokes { grid-template-columns: 1fr; }
       .card { padding: 1.25rem; }
-      .lang-switcher { top: 8px; right: 8px; }
+      .lang-switcher { top: 10px; right: 10px; }
     }
   </style>
 </head>
@@ -227,11 +328,11 @@
   <div class="particles" id="particles"></div>
 
   <!-- Language switcher -->
-  <div class="lang-switcher">
-    <button class="lang-btn active" data-switch="zh">ZH</button>
-    <button class="lang-btn" data-switch="en">EN</button>
-    <button class="lang-btn" data-switch="ai">AI</button>
-  </div>
+  <nav class="lang-switcher" aria-label="Language switcher">
+    <button class="lang-btn active" data-switch="zh" aria-label="Chinese">ZH</button>
+    <button class="lang-btn" data-switch="en" aria-label="English">EN</button>
+    <button class="lang-btn" data-switch="ai" aria-label="Machine-readable">AI</button>
+  </nav>
 
   <div class="container">
 
@@ -256,17 +357,17 @@
 
       <div class="social-links">
         <a href="https://x.com/liyoclaw1242" class="social-link" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           @liyoclaw1242
         </a>
         <a href="https://github.com/liyoclaw1242" class="social-link" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           liyoclaw1242
         </a>
       </div>
     </section>
 
-    <!-- ═══ ZH Content ═══ -->
+    <!-- ZH Content -->
     <div data-lang="zh" class="active">
 
       <section class="section reveal">
@@ -279,91 +380,134 @@
 
       <section class="section reveal">
         <div class="section-title">Agent Team 架構</div>
-        <div class="arch-diagram">
-          <pre>
-            <span class="arch-spoke">FE / BE / OPS</span>（實作）──┐
-            <span class="arch-spoke">QA</span>（驗證）          ──┼──&gt; <span class="arch-hub">ARCH</span>（唯一調度 + 合併）
-            <span class="arch-spoke">Design</span>（視覺審查）  ──┤
-            <span class="arch-spoke">DEBUG</span>（根因分析）   ──┘</pre>
+        <div class="arch-visual">
+          <div class="arch-hub-node">
+            <div class="arch-hub-label">Dispatcher</div>
+            <div class="arch-hub-title">ARCH — 軟體架構師</div>
+          </div>
+          <div class="arch-connector">
+            <div class="arch-connector-line"></div>
+            <div class="arch-connector-arrows">dispatch / deliver</div>
+            <div class="arch-connector-line"></div>
+          </div>
+          <div class="arch-spokes">
+            <div class="arch-spoke-group">
+              <div class="arch-spoke-label impl">實作</div>
+              <div class="arch-spoke-names">FE / BE / OPS</div>
+            </div>
+            <div class="arch-spoke-group">
+              <div class="arch-spoke-label review">審查</div>
+              <div class="arch-spoke-names">QA / Design</div>
+            </div>
+            <div class="arch-spoke-group">
+              <div class="arch-spoke-label review">診斷</div>
+              <div class="arch-spoke-names">DEBUG</div>
+            </div>
+          </div>
         </div>
-        <div class="roles-grid">
-          <div class="role-card">
-            <div class="role-badge role-badge-arch">ARCH</div>
-            <div class="role-name">軟體架構師</div>
-            <div class="role-desc">唯一調度者。拆解需求、分派任務、合併 PR、品質把關。</div>
+
+        <div class="roles-section">
+          <!-- ARCH: featured -->
+          <div class="role-card-featured">
+            <div class="role-icon">🏛️</div>
+            <div>
+              <div class="role-badge role-badge-arch">ARCH</div>
+              <div class="role-name">軟體架構師</div>
+              <div class="role-desc">唯一調度者。拆解需求、分派任務、合併 PR、品質把關。</div>
+            </div>
           </div>
-          <div class="role-card">
-            <div class="role-badge role-badge-impl">FE</div>
-            <div class="role-name">前端工程師</div>
-            <div class="role-desc">React / Next.js / Tailwind，元件開發與響應式設計。</div>
+
+          <div class="roles-group-label">Implementation</div>
+          <div class="roles-grid">
+            <div class="role-card">
+              <div class="role-badge role-badge-fe">FE</div>
+              <div class="role-name">前端工程師</div>
+              <div class="role-desc">React / Next.js / Tailwind，元件開發與響應式設計。</div>
+            </div>
+            <div class="role-card">
+              <div class="role-badge role-badge-be">BE</div>
+              <div class="role-name">後端工程師</div>
+              <div class="role-desc">API、資料庫、商業邏輯，安全與效能優先。</div>
+            </div>
+            <div class="role-card">
+              <div class="role-badge role-badge-ops">OPS</div>
+              <div class="role-name">DevOps 工程師</div>
+              <div class="role-desc">CI/CD、部署、基礎設施即程式碼。</div>
+            </div>
           </div>
-          <div class="role-card">
-            <div class="role-badge role-badge-impl">BE</div>
-            <div class="role-name">後端工程師</div>
-            <div class="role-desc">API、資料庫、商業邏輯，安全與效能優先。</div>
-          </div>
-          <div class="role-card">
-            <div class="role-badge role-badge-impl">OPS</div>
-            <div class="role-name">DevOps 工程師</div>
-            <div class="role-desc">CI/CD、部署、基礎設施即程式碼。</div>
-          </div>
-          <div class="role-card">
-            <div class="role-badge role-badge-review">QA</div>
-            <div class="role-name">QA 工程師</div>
-            <div class="role-desc">測試計畫、多維度驗證（UI / API / DB / 負載）。</div>
-          </div>
-          <div class="role-card">
-            <div class="role-badge role-badge-review">DESIGN</div>
-            <div class="role-name">UI/UX 設計師</div>
-            <div class="role-desc">視覺審查、設計系統、無障礙性。</div>
-          </div>
-          <div class="role-card">
-            <div class="role-badge role-badge-review">DEBUG</div>
-            <div class="role-name">調查員</div>
-            <div class="role-desc">根因分析、Observability 驅動診斷。不修復，只診斷。</div>
+
+          <div class="roles-group-label">Review &amp; Diagnosis</div>
+          <div class="roles-grid">
+            <div class="role-card">
+              <div class="role-badge role-badge-qa">QA</div>
+              <div class="role-name">QA 工程師</div>
+              <div class="role-desc">測試計畫、多維度驗證（UI / API / DB / 負載）。</div>
+            </div>
+            <div class="role-card">
+              <div class="role-badge role-badge-design">DESIGN</div>
+              <div class="role-name">UI/UX 設計師</div>
+              <div class="role-desc">視覺審查、設計系統、無障礙性。</div>
+            </div>
+            <div class="role-card">
+              <div class="role-badge role-badge-debug">DEBUG</div>
+              <div class="role-name">調查員</div>
+              <div class="role-desc">根因分析、Observability 驅動診斷。不修復，只診斷。</div>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="section reveal">
         <div class="section-title">系統特色</div>
-        <div class="skills-grid">
-          <div class="skill-card">
-            <div class="skill-icon">🏗️</div>
-            <div class="skill-name">Hub-and-Spoke 架構</div>
-            <div class="skill-desc">ARCH 為唯一決策者，所有完成的工作回流 ARCH 做 triage。</div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🏗️</div>
+            <div>
+              <div class="feature-name">Hub-and-Spoke 架構</div>
+              <div class="feature-desc">ARCH 為唯一決策者，所有完成的工作回流 ARCH 做 triage。</div>
+            </div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">🐙</div>
-            <div class="skill-name">GitHub 原生</div>
-            <div class="skill-desc">零外部 API。Issues + Labels + gh CLI 管理所有任務流。</div>
+          <div class="feature-card">
+            <div class="feature-icon">🐙</div>
+            <div>
+              <div class="feature-name">GitHub 原生</div>
+              <div class="feature-desc">零外部 API。Issues + Labels + gh CLI 管理所有任務流。</div>
+            </div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">🔒</div>
-            <div class="skill-name">路由驗證</div>
-            <div class="skill-desc">route.sh 強制防止重複派遣，verify-labels.sh 確保標籤完整。</div>
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <div>
+              <div class="feature-name">路由驗證</div>
+              <div class="feature-desc">route.sh 強制防止重複派遣，verify-labels.sh 確保標籤完整。</div>
+            </div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">📺</div>
-            <div class="skill-name">Supervisor 儀表板</div>
-            <div class="skill-desc">Electron 應用，即時監控 Agent 狀態、成本、任務進度。</div>
+          <div class="feature-card">
+            <div class="feature-icon">📺</div>
+            <div>
+              <div class="feature-name">Supervisor 儀表板</div>
+              <div class="feature-desc">Electron 應用，即時監控 Agent 狀態、成本、任務進度。</div>
+            </div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">🔌</div>
-            <div class="skill-name">可擴展技能包</div>
-            <div class="skill-desc">每個角色有獨立的 workflow / rules / validate / cases / log。</div>
+          <div class="feature-card">
+            <div class="feature-icon">🔌</div>
+            <div>
+              <div class="feature-name">可擴展技能包</div>
+              <div class="feature-desc">每個角色有獨立的 workflow / rules / validate / cases / log。</div>
+            </div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">🔄</div>
-            <div class="skill-name">熔斷與自癒</div>
-            <div class="skill-desc">指數退避重試、heartbeat 監控、自動重啟失敗的 Agent。</div>
+          <div class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <div>
+              <div class="feature-name">熔斷與自癒</div>
+              <div class="feature-desc">指數退避重試、heartbeat 監控、自動重啟失敗的 Agent。</div>
+            </div>
           </div>
         </div>
       </section>
 
     </div>
 
-    <!-- ═══ EN Content ═══ -->
+    <!-- EN Content -->
     <div data-lang="en">
 
       <section class="section reveal">
@@ -376,91 +520,133 @@
 
       <section class="section reveal">
         <div class="section-title">Agent Team Architecture</div>
-        <div class="arch-diagram">
-          <pre>
-            <span class="arch-spoke">FE / BE / OPS</span> (implement) ──┐
-            <span class="arch-spoke">QA</span> (verify)              ──┼──&gt; <span class="arch-hub">ARCH</span> (sole dispatcher + merge)
-            <span class="arch-spoke">Design</span> (visual review)   ──┤
-            <span class="arch-spoke">DEBUG</span> (root cause)       ──┘</pre>
+        <div class="arch-visual">
+          <div class="arch-hub-node">
+            <div class="arch-hub-label">Dispatcher</div>
+            <div class="arch-hub-title">ARCH — Software Architect</div>
+          </div>
+          <div class="arch-connector">
+            <div class="arch-connector-line"></div>
+            <div class="arch-connector-arrows">dispatch / deliver</div>
+            <div class="arch-connector-line"></div>
+          </div>
+          <div class="arch-spokes">
+            <div class="arch-spoke-group">
+              <div class="arch-spoke-label impl">Implement</div>
+              <div class="arch-spoke-names">FE / BE / OPS</div>
+            </div>
+            <div class="arch-spoke-group">
+              <div class="arch-spoke-label review">Review</div>
+              <div class="arch-spoke-names">QA / Design</div>
+            </div>
+            <div class="arch-spoke-group">
+              <div class="arch-spoke-label review">Diagnose</div>
+              <div class="arch-spoke-names">DEBUG</div>
+            </div>
+          </div>
         </div>
-        <div class="roles-grid">
-          <div class="role-card">
-            <div class="role-badge role-badge-arch">ARCH</div>
-            <div class="role-name">Software Architect</div>
-            <div class="role-desc">Sole dispatcher. Decomposes requirements, routes tasks, merges PRs, quality gates.</div>
+
+        <div class="roles-section">
+          <div class="role-card-featured">
+            <div class="role-icon">🏛️</div>
+            <div>
+              <div class="role-badge role-badge-arch">ARCH</div>
+              <div class="role-name">Software Architect</div>
+              <div class="role-desc">Sole dispatcher. Decomposes requirements, routes tasks, merges PRs, quality gates.</div>
+            </div>
           </div>
-          <div class="role-card">
-            <div class="role-badge role-badge-impl">FE</div>
-            <div class="role-name">Frontend Engineer</div>
-            <div class="role-desc">React / Next.js / Tailwind, component development and responsive design.</div>
+
+          <div class="roles-group-label">Implementation</div>
+          <div class="roles-grid">
+            <div class="role-card">
+              <div class="role-badge role-badge-fe">FE</div>
+              <div class="role-name">Frontend Engineer</div>
+              <div class="role-desc">React / Next.js / Tailwind, component development and responsive design.</div>
+            </div>
+            <div class="role-card">
+              <div class="role-badge role-badge-be">BE</div>
+              <div class="role-name">Backend Engineer</div>
+              <div class="role-desc">APIs, databases, business logic. Security and performance first.</div>
+            </div>
+            <div class="role-card">
+              <div class="role-badge role-badge-ops">OPS</div>
+              <div class="role-name">DevOps Engineer</div>
+              <div class="role-desc">CI/CD, deployment, infrastructure as code.</div>
+            </div>
           </div>
-          <div class="role-card">
-            <div class="role-badge role-badge-impl">BE</div>
-            <div class="role-name">Backend Engineer</div>
-            <div class="role-desc">APIs, databases, business logic. Security and performance first.</div>
-          </div>
-          <div class="role-card">
-            <div class="role-badge role-badge-impl">OPS</div>
-            <div class="role-name">DevOps Engineer</div>
-            <div class="role-desc">CI/CD, deployment, infrastructure as code.</div>
-          </div>
-          <div class="role-card">
-            <div class="role-badge role-badge-review">QA</div>
-            <div class="role-name">QA Engineer</div>
-            <div class="role-desc">Test plans, multi-dimensional verification (UI / API / DB / Load).</div>
-          </div>
-          <div class="role-card">
-            <div class="role-badge role-badge-review">DESIGN</div>
-            <div class="role-name">UI/UX Designer</div>
-            <div class="role-desc">Visual review, design systems, accessibility compliance.</div>
-          </div>
-          <div class="role-card">
-            <div class="role-badge role-badge-review">DEBUG</div>
-            <div class="role-name">Investigator</div>
-            <div class="role-desc">Root cause analysis, observability-driven diagnosis. Diagnose only, never fix.</div>
+
+          <div class="roles-group-label">Review &amp; Diagnosis</div>
+          <div class="roles-grid">
+            <div class="role-card">
+              <div class="role-badge role-badge-qa">QA</div>
+              <div class="role-name">QA Engineer</div>
+              <div class="role-desc">Test plans, multi-dimensional verification (UI / API / DB / Load).</div>
+            </div>
+            <div class="role-card">
+              <div class="role-badge role-badge-design">DESIGN</div>
+              <div class="role-name">UI/UX Designer</div>
+              <div class="role-desc">Visual review, design systems, accessibility compliance.</div>
+            </div>
+            <div class="role-card">
+              <div class="role-badge role-badge-debug">DEBUG</div>
+              <div class="role-name">Investigator</div>
+              <div class="role-desc">Root cause analysis, observability-driven diagnosis. Diagnose only, never fix.</div>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="section reveal">
         <div class="section-title">System Features</div>
-        <div class="skills-grid">
-          <div class="skill-card">
-            <div class="skill-icon">🏗️</div>
-            <div class="skill-name">Hub-and-Spoke</div>
-            <div class="skill-desc">ARCH is the sole decision maker. All work flows back for triage.</div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🏗️</div>
+            <div>
+              <div class="feature-name">Hub-and-Spoke</div>
+              <div class="feature-desc">ARCH is the sole decision maker. All work flows back for triage.</div>
+            </div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">🐙</div>
-            <div class="skill-name">GitHub-Native</div>
-            <div class="skill-desc">Zero external APIs. Issues + Labels + gh CLI manage all task flow.</div>
+          <div class="feature-card">
+            <div class="feature-icon">🐙</div>
+            <div>
+              <div class="feature-name">GitHub-Native</div>
+              <div class="feature-desc">Zero external APIs. Issues + Labels + gh CLI manage all task flow.</div>
+            </div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">🔒</div>
-            <div class="skill-name">Routing Validation</div>
-            <div class="skill-desc">route.sh prevents re-routing loops. verify-labels.sh enforces label integrity.</div>
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <div>
+              <div class="feature-name">Routing Validation</div>
+              <div class="feature-desc">route.sh prevents re-routing loops. verify-labels.sh enforces label integrity.</div>
+            </div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">📺</div>
-            <div class="skill-name">Supervisor Dashboard</div>
-            <div class="skill-desc">Electron app for real-time agent monitoring, cost tracking, task progress.</div>
+          <div class="feature-card">
+            <div class="feature-icon">📺</div>
+            <div>
+              <div class="feature-name">Supervisor Dashboard</div>
+              <div class="feature-desc">Electron app for real-time agent monitoring, cost tracking, task progress.</div>
+            </div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">🔌</div>
-            <div class="skill-name">Extensible Skill Packs</div>
-            <div class="skill-desc">Each role has workflow / rules / validate / cases / log directories.</div>
+          <div class="feature-card">
+            <div class="feature-icon">🔌</div>
+            <div>
+              <div class="feature-name">Extensible Skill Packs</div>
+              <div class="feature-desc">Each role has workflow / rules / validate / cases / log directories.</div>
+            </div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon">🔄</div>
-            <div class="skill-name">Circuit Breaker</div>
-            <div class="skill-desc">Exponential backoff, heartbeat monitoring, auto-restart on failure.</div>
+          <div class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <div>
+              <div class="feature-name">Circuit Breaker</div>
+              <div class="feature-desc">Exponential backoff, heartbeat monitoring, auto-restart on failure.</div>
+            </div>
           </div>
         </div>
       </section>
 
     </div>
 
-    <!-- ═══ AI Content (machine-readable) ═══ -->
+    <!-- AI Content (machine-readable) -->
     <div data-lang="ai">
 
       <section class="section reveal">
@@ -596,6 +782,9 @@ interaction_protocol:
       document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => el.classList.add('active'));
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.switch === lang));
       document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : lang === 'ai' ? 'en' : 'en';
+
+      // AI mode class toggle for theme override
+      document.documentElement.classList.toggle('ai-mode', lang === 'ai');
 
       // Re-trigger reveal for newly visible sections
       setTimeout(() => {
