@@ -1,1 +1,1 @@
-export default{id:"architect",order:7,type:"small_house",position:[-22.5,0,6],anchor:[-22.5,2.4,6],rotationY:-Math.PI/2,wip:!0,block:"west",approach:{side:"N",offset:1.5},label:{en:"Architect",zh:"建築師"},desc:{en:"",zh:""}};
+export default{id:"architect",order:7,type:"small_house",position:[-20,0,9],anchor:[-20,2.4,9],rotationY:-Math.PI/2,wip:!0,block:"west",approach:{side:"S",offset:4},label:{en:"Architect",zh:"建築師"},desc:{en:"",zh:""}};
