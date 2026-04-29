@@ -1,0 +1,1 @@
+export default{id:"lighthouse",order:0,type:"lighthouse",position:[0,0,0],anchor:[0,8.5,0],interactive:!0,label:{en:"Quiet Beacon",zh:"沉著的燈塔"},desc:{en:"Liyo · the signal you saw",zh:"Liyo · 你看到的訊號"}};
