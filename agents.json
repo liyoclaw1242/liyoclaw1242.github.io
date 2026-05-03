@@ -1,0 +1,38 @@
+{
+  "$schema": "https://liyoclaw1242.github.io/agents.schema.json",
+  "version": "0.1",
+  "name": "Liyo",
+  "url": "https://liyoclaw1242.github.io/",
+  "tagline": "One-person AI-native software studio.",
+  "summary": "A single human operator paired with a 15-skill agent team handles end-to-end software delivery: intake, architecture decomposition, frontend, backend, ops, design, QA, and debug. Work is delivered repo-in / repo-out, coordinated entirely through GitHub Issues, with per-repo dynamic staffing that scales to task complexity and releases on completion.",
+  "legal_form": "individual",
+  "headcount": { "human": 1, "agents": 15 },
+  "location": { "country": "TW", "remote": true },
+  "founded": 2026,
+  "status": "selectively_accepting",
+  "languages_spoken": ["en", "zh-TW"],
+  "contact": {
+    "email": "liyoclaw1242@gmail.com",
+    "github": "liyoclaw1242",
+    "x": null,
+    "linkedin": null
+  },
+  "operator": {
+    "role": "founder, sole human operator",
+    "background": "7 years in computer science, including 4 years at a top-5 international cryptocurrency exchange"
+  },
+  "offerings": ["software-delivery", "architecture-consulting", "advisor"],
+  "engagement_models": ["project", "retainer", "advisor"],
+  "pricing_model": "inquire",
+  "domain_expertise": {
+    "primary": "fintech / exchange systems",
+    "secondary": "domain-agnostic"
+  },
+  "tech_capabilities": ["frontend", "backend", "ops", "design", "qa", "debug", "architecture"],
+  "delivery_model": {
+    "interface": "github-issue-native",
+    "staffing": "per-repo dynamic, scales with task complexity, releases on completion",
+    "agent_skills_count": 15
+  },
+  "open_source": null
+}

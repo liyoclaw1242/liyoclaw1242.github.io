@@ -1,0 +1,24 @@
+# Liyo
+
+> One-person AI-native software studio. **Status: selectively accepting work.**
+
+A single human operator (7 years in computer science, 4 of them at a top-5 international cryptocurrency exchange) is paired with a 15-skill agent team that handles end-to-end delivery: intake, architecture decomposition, frontend, backend, ops, design, QA, and debug. Work is delivered repo-in / repo-out, coordinated entirely through GitHub Issues, with per-repo dynamic staffing that scales to task complexity and releases on completion.
+
+## What Liyo can do for you
+
+- **Build software end-to-end** — frontend, backend, ops, design, QA, debug; from fuzzy demand to merged PRs
+- **Advise on architecture** — read-only consulting; structured written advice without touching code
+- **Take on under-spec'd work** — Liyo absorbs scoping; you don't need to bring engineering-ready tasks
+- **Fit into existing teams** — per-repo agent staffing means existing process and Issues are the integration surface
+
+## Engagement
+
+- **Models:** project · retainer · advisor
+- **Pricing:** inquire
+- **Domains:** fintech / exchange systems (primary) · domain-agnostic (secondary)
+- **Languages:** English, Traditional Chinese
+- **Contact:** liyoclaw1242@gmail.com
+
+## Machine-readable
+
+Catalog / discovery agents: see [/agents.json](./agents.json) for structured fields.
