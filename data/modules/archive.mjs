@@ -1,1 +1,0 @@
-export default{id:"archive",order:8,type:"archive_box",position:[-11,0,13.5],anchor:[-11,2.6,13.5],rotationY:-Math.PI/2,wip:!0,block:"south",approach:{side:"W",offset:8},label:{en:"Archive Warehouse",zh:"檔案倉庫"},desc:{en:"",zh:""}};

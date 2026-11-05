@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://liyoclaw1242.github.io/city.schema.json",
+  "title": "Agent city",
+  "description": "描述一組 AI agent 的分工，用來預覽成一座城市。每個分區是一家公司或一個團隊，每個 agent 只有一個職責。",
+  "type": "object",
+  "required": [
+    "name",
+    "human",
+    "zones"
+  ],
+  "$comment": "驗證器另外會檢查：id 全城唯一、handoffs.to 必須是存在的 agent id 或 human.id、不能交棒給自己、全城最多 48 個 agent。未列出的欄位會被忽略。",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "description": "城市（公司或團隊）名稱"
+    },
+    "tagline": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "description": "一句話介紹"
+    },
+    "human": {
+      "type": "object",
+      "description": "城市中心的人類決策者。agent 把需要人決定的事交給他。",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "maxLength": 40
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 24
+        }
+      }
+    },
+    "zones": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "agents"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "maxLength": 40
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 16
+          },
+          "subtitle": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "agents": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 12,
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "name",
+                "tagline",
+                "outputs"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                  "maxLength": 40,
+                  "description": "全城唯一"
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 24
+                },
+                "tagline": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80,
+                  "description": "一句話定位：它唯一的職責"
+                },
+                "duty": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160,
+                  "description": "職責說明（選填，會顯示在小卡上）"
+                },
+                "status": {
+                  "enum": [
+                    "active",
+                    "paused"
+                  ],
+                  "description": "選填。paused：暫停中，樓不亮燈，也不會接到工作"
+                },
+                "outputs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 5,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 30
+                  }
+                },
+                "handoffs": {
+                  "type": "array",
+                  "maxItems": 5,
+                  "description": "交棒對象：任一 agent 的 id，或 human.id",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "to"
+                    ],
+                    "properties": {
+                      "to": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                        "maxLength": 40
+                      },
+                      "when": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 30,
+                        "description": "什麼情況交給它。寫「退回…」表示審查退回，城市會用紅色貨物表示"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
