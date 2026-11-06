@@ -1,0 +1,248 @@
+{
+  "name": "Liyo AI Native",
+  "tagline": "由 Grok 機器人分工運作的一人公司",
+  "human": {
+    "id": "liyo",
+    "name": "liyo"
+  },
+  "zones": [
+    {
+      "id": "jiulong",
+      "name": "九龍",
+      "subtitle": "銘登多元的一人工作室",
+      "agents": [
+        {
+          "id": "topic-product",
+          "name": "題材與產品",
+          "tagline": "做出信眾真正想請回家的東西",
+          "duty": "研究神明典故與節慶日曆，提出商品概念與四語文案，並寫短影音腳本與分鏡線稿送審。",
+          "outputs": [
+            "節慶題材表",
+            "商品文案",
+            "短影音腳本與線稿"
+          ],
+          "handoffs": [
+            {
+              "to": "asset-review"
+            },
+            {
+              "to": "outreach"
+            }
+          ]
+        },
+        {
+          "id": "asset-review",
+          "name": "素材審批",
+          "tagline": "短影音守門人，自己不寫稿",
+          "duty": "逐條審腳本與線稿：典故、合規、出鏡、產品事實。通過出終稿；退回附必修清單。",
+          "outputs": [
+            "審查紀錄",
+            "PDF 終稿"
+          ],
+          "handoffs": [
+            {
+              "to": "topic-product",
+              "when": "退回時",
+              "kind": "return"
+            },
+            {
+              "to": "liyo",
+              "when": "通過後"
+            },
+            {
+              "to": "liyo",
+              "when": "退回兩次時",
+              "kind": "escalate"
+            }
+          ]
+        },
+        {
+          "id": "outreach",
+          "name": "曝光與結緣",
+          "tagline": "靠廟方與社群背書被看見",
+          "duty": "同時推進少數合作對象，出週推進表，依客群起草提案信；含競品合作方反開發。",
+          "outputs": [
+            "推進表",
+            "提案信草稿"
+          ],
+          "handoffs": [
+            {
+              "to": "liyo",
+              "when": "決定寄不寄"
+            },
+            {
+              "to": "concierge",
+              "when": "對方回信"
+            }
+          ]
+        },
+        {
+          "id": "search-visibility",
+          "name": "搜尋曝光",
+          "tagline": "追蹤官網在搜尋上被看見",
+          "duty": "每週追蹤固定關鍵字排名，寫快照與最多三個建議；連續惡化才算警訊。",
+          "outputs": [
+            "每週排名快照"
+          ],
+          "handoffs": [
+            {
+              "to": "liyo"
+            },
+            {
+              "to": "topic-product",
+              "when": "需要題材"
+            }
+          ]
+        },
+        {
+          "id": "concierge",
+          "name": "接待與成交",
+          "tagline": "把詢問接住，帶到請回家",
+          "duty": "讀工作信箱與官方帳號留言，起草回覆與待跟進清單；只起草，不代發。",
+          "outputs": [
+            "回覆草稿",
+            "待跟進清單"
+          ],
+          "handoffs": [
+            {
+              "to": "liyo",
+              "when": "決定是否回覆"
+            }
+          ]
+        },
+        {
+          "id": "fulfillment",
+          "name": "金流與交付",
+          "tagline": "東西送到、錢流回來、帳透明",
+          "duty": "週報看訂單、出貨與收據；每月對帳並提醒續約與稅務。權限唯讀。",
+          "status": "paused",
+          "outputs": [
+            "週報",
+            "月對帳"
+          ],
+          "handoffs": [
+            {
+              "to": "liyo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "travel",
+      "name": "旅遊管家",
+      "subtitle": "一人旅遊編輯部",
+      "agents": [
+        {
+          "id": "travel-companion",
+          "name": "旅伴顧問",
+          "tagline": "編輯部入口，決定下一個地區",
+          "duty": "維護旅人檔案與想去清單，決定下一地區；每週檢查卡住超過三天的稿。",
+          "outputs": [
+            "旅人檔案",
+            "想去清單",
+            "卡稿提醒"
+          ],
+          "handoffs": [
+            {
+              "to": "region-researcher"
+            }
+          ]
+        },
+        {
+          "id": "region-researcher",
+          "name": "地區研究員",
+          "tagline": "出發前先看懂一個地方",
+          "duty": "依想去清單寫主題研究檔：歷史、當代生活、在地關切、書與紀錄片，附地點對應表。",
+          "outputs": [
+            "主題研究檔"
+          ],
+          "handoffs": [
+            {
+              "to": "place-verifier"
+            },
+            {
+              "to": "fact-checker"
+            }
+          ]
+        },
+        {
+          "id": "place-verifier",
+          "name": "地點查證員",
+          "tagline": "地點資料庫的守門人",
+          "duty": "把研究檔與需求單裡的地點查證後寫進資料庫；沒來源不硬填。",
+          "outputs": [
+            "地點資料庫"
+          ],
+          "handoffs": [
+            {
+              "to": "itinerary-planner"
+            }
+          ]
+        },
+        {
+          "id": "itinerary-planner",
+          "name": "行程規劃師",
+          "tagline": "把研究排成走得了的旅程",
+          "duty": "用已核准研究與地點庫寫單地自由行；缺地點發需求單，不自己查。",
+          "outputs": [
+            "自由行方案",
+            "需求單"
+          ],
+          "handoffs": [
+            {
+              "to": "place-verifier",
+              "when": "缺地點發需求單"
+            },
+            {
+              "to": "fact-checker",
+              "when": "方案完成"
+            }
+          ]
+        },
+        {
+          "id": "fact-checker",
+          "name": "事實查核員",
+          "tagline": "唯一能說通過的人",
+          "duty": "逐條比對研究檔與方案事實，判定通過或退回，必修與建議分開列。",
+          "outputs": [
+            "查核報告"
+          ],
+          "handoffs": [
+            {
+              "to": "layout-publisher",
+              "when": "通過"
+            },
+            {
+              "to": "region-researcher",
+              "when": "退回研究檔",
+              "kind": "return"
+            },
+            {
+              "to": "itinerary-planner",
+              "when": "退回方案",
+              "kind": "return"
+            }
+          ]
+        },
+        {
+          "id": "layout-publisher",
+          "name": "排版輸出員",
+          "tagline": "通過的方案變成旅行書",
+          "duty": "把已通過方案做成 PDF 與網頁版並歸檔，最終版送到家裡印表機。",
+          "outputs": [
+            "PDF",
+            "HTML",
+            "紙本"
+          ],
+          "handoffs": [
+            {
+              "to": "liyo",
+              "when": "流程終點"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

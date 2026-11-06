@@ -9,7 +9,7 @@
     "human",
     "zones"
   ],
-  "$comment": "驗證器另外會檢查：id 全城唯一、handoffs.to 必須是存在的 agent id 或 human.id、不能交棒給自己、全城最多 48 個 agent。未列出的欄位會被忽略。",
+  "$comment": "驗證器另外會檢查：agent id 全城唯一、分區 id 不重複、handoffs.to 必須是存在的 agent id 或 human.id、不能交棒給自己、escalate 只能交給 human、全城最多 48 個 agent。重複的交棒只保留一次；未列出的欄位會被忽略。",
   "properties": {
     "name": {
       "type": "string",
@@ -142,7 +142,15 @@
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 30,
-                        "description": "什麼情況交給它。寫「退回…」表示審查退回，城市會用紅色貨物表示"
+                        "description": "什麼情況交給它（給人看的說明）"
+                      },
+                      "kind": {
+                        "enum": [
+                          "forward",
+                          "return",
+                          "escalate"
+                        ],
+                        "description": "forward（預設）一般交棒；return 審查退回，城市用紅色貨物表示；escalate 多次退回後交給 human"
                       }
                     }
                   }
